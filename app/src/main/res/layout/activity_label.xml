@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_label_text"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="打印文字"
+        />
+
+    <Button
+        android:id="@+id/btn_label_barcode"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="打印条形码"
+        />
+
+    <Button
+        android:id="@+id/btn_label_qrcode"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="开始打印二维码"
+        />
+
+    <Button
+        android:id="@+id/btn_label_bitmap"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="打印图片40*30"
+        />
+
+    <Button
+        android:id="@+id/btn_label_test_example"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="开始打印"
+        />
+
+
+</LinearLayout>

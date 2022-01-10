@@ -6,7 +6,7 @@ android {
     compileSdk 29
 
     defaultConfig {
-        applicationId "com.andrew.zbar"
+        applicationId "com.andrew.printer"
         minSdk 21
         targetSdk 28
         versionCode 1
@@ -35,4 +35,5 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation project(':printflibrary')
 }
