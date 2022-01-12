@@ -762,4 +762,14 @@ public class BluetoothManager {
     }
 
 
+
+    /**
+     * 打印测试页
+     */
+    public int printfTestPage() {
+        byte[] cmd = {0x12, 0x54};
+        return write(cmd);
+    }
+
+
 }

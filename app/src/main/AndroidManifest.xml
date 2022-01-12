@@ -22,6 +22,10 @@
 
         <activity android:name="com.andrew.printer.BluetoothActivity"/>
         <activity android:name="com.andrew.printer.LabelActivity"/>
+        <activity android:name="com.andrew.printer.ReceiptActivity"/>
+        <activity android:name="com.andrew.printer.USBPrinterActivity"/>
+
+
     </application>
 
 </manifest>

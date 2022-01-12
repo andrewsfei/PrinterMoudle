@@ -15,7 +15,20 @@
         android:id="@+id/btn_main_test_label"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="进入打印" />
+        android:text="进入TSPL打印" />
+
+    <Button
+        android:id="@+id/btn_main_test_escm_label"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="进入ESCM打印" />
+
+    <Button
+        android:id="@+id/btn_main_test_usb_label"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="进入USB打印" />
+
 
 
 </LinearLayout>

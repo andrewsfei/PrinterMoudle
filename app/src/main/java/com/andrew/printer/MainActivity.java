@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.andrew.printf.manager.BluetoothManager;
+import com.andrew.printf.utils.ToastUtils;
 
 public class MainActivity extends Activity {
 
@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
 
     Context context;
 
-    Button btnMainConnectBlue, btnMainTestLabel;
+    Button btnMainConnectBlue, btnMainTestLabel,btnMainTestESCMLabel,btnMainTestUSBLabel;
 
     @SuppressLint("LongLogTag")
     @Override
@@ -30,6 +30,9 @@ public class MainActivity extends Activity {
 
         btnMainConnectBlue = findViewById(R.id.btn_main_connect_blue);
         btnMainTestLabel = findViewById(R.id.btn_main_test_label);
+        btnMainTestESCMLabel = findViewById(R.id.btn_main_test_escm_label);
+        btnMainTestUSBLabel = findViewById(R.id.btn_main_test_usb_label);
+
         //蓝牙连接结果回调
         BluetoothManager.getInstance(context)
                 .addConnectResultCallBack(new BluetoothManager.ConnectResultCallBack() {
@@ -37,21 +40,21 @@ public class MainActivity extends Activity {
                     public void success(BluetoothDevice device) {
                         Log.e(TAG, "蓝牙连接成功");
                         btnMainConnectBlue.setText("已连接：" + device.getName());
-                        Toast.makeText(context, "蓝牙连接成功", Toast.LENGTH_SHORT).show();
+                        ToastUtils.ToastText(context, "蓝牙连接成功");
                     }
 
                     @Override
                     public void close(BluetoothDevice device) {
                         Log.e(TAG, "蓝牙连接关闭");
                         btnMainConnectBlue.setText("连接蓝牙");
-                        Toast.makeText(context, "蓝牙连接关闭", Toast.LENGTH_SHORT).show();
+                        ToastUtils.ToastText(context, "蓝牙连接关闭");
                     }
 
                     @Override
                     public void fail(BluetoothDevice device) {
                         Log.e(TAG, "蓝牙连接失败");
                         btnMainConnectBlue.setText("连接蓝牙");
-                        Toast.makeText(context, "蓝牙连接失败", Toast.LENGTH_SHORT).show();
+                        ToastUtils.ToastText(context, "蓝牙连接失败");
                     }
                 });
 
@@ -64,12 +67,12 @@ public class MainActivity extends Activity {
             }
         });
 
-        //进入标签打印demo
+        //进入标签打印demo----TSPL
         btnMainTestLabel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!BluetoothManager.getInstance(MainActivity.this).isConnect()) {
-                    Toast.makeText(context, "请先连接蓝牙", Toast.LENGTH_SHORT).show();
+                    ToastUtils.ToastText(context, "请先连接蓝牙");
                     startActivity(new Intent(context, BluetoothActivity.class));
                     return;
                 }
@@ -77,6 +80,29 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        //进入标签打印demo----ESCM
+        btnMainTestESCMLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!BluetoothManager.getInstance(MainActivity.this).isConnect()){
+                    ToastUtils.ToastText(MainActivity.this,"请先连接蓝牙");
+                    return;
+                }
+                Intent intent = new Intent(context,ReceiptActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //进入标签打印demo----USB
+        btnMainTestUSBLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,USBPrinterActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         //默认连接上一次连接的蓝牙
         BluetoothManager.getInstance(this).connectLastBluetooth();
