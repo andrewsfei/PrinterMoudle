@@ -43,7 +43,8 @@ public class BluetoothManager {
     private Map<String, BluetoothDevice> deviceMap = new HashMap<>();
     private BluetoothAdapter bluetoothAdapter;
     private List<ScanBlueCallBack> scanBlueCallBacks = new ArrayList<>();
-    private final UUID PRINTER_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+//    private final UUID PRINTER_UUID = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
+    private final UUID PRINTER_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     /**
      * 蓝牙是否连接
