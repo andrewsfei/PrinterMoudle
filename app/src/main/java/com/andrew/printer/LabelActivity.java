@@ -23,6 +23,7 @@ import java.util.List;
 public class LabelActivity extends Activity {
     List<String> list = new ArrayList<String>();
     String content = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,11 +31,11 @@ public class LabelActivity extends Activity {
 
         list.add("059#002#305#TI1901070017#2019-01-07#01001059#002#305#TI1901070017#2019-01-07#01001");
         list.add("888888");
-        for (int i=0;i<list.size();i++){
+        for (int i = 0; i < list.size(); i++) {
             content = list.get(i);
         }
 
-        for (String content:list) {
+        for (String content : list) {
             content = content;
         }
 
@@ -124,6 +125,23 @@ public class LabelActivity extends Activity {
                 instance.printText(0, 80, 1, 1, "条码测试条码测试条码测试");
                 instance.printBarCode(0, 114, "128", 10 * 8, 1, 1, 0, "059#002#305#TI1901070017#2019-01-07#01001");
                 instance.beginPrintf(1);
+
+
+                                /*        //打印二维码-单条打印
+        instance.printQrCode(80, 20, "L", 6, 0, params.getString("code"));
+        instance.printText(30, 200, 1, 1, "品号:" + params.getString("prdNo"));
+        instance.beginPrintf(1);*/
+
+                //打印二维码-多条打印
+/*        ArrayList<Object> testList = new ArrayList<>();
+        testList.add("1111#11111#111111");
+        testList.add("2222#22222#222222");
+        for (Object s : testList) {
+            instance.printQrCode(80, 20, "L", 6, 0, (String) s);
+            instance.printText(30, 200, 1, 1, "品号:" + (String) s);
+            instance.beginPrintf(1);
+            instance.clearCanvas();
+        }*/
             }
         });
     }
