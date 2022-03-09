@@ -7,11 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,6 +82,8 @@ public class BluetoothActivity extends Activity {
         context = this;
 
         rvBluetoothShowList = findViewById(R.id.rv_bluetooth_show_list);
+        //添加Android自带的分割线
+        rvBluetoothShowList.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerShowAdapter = new BluetoothRecyclerViewAdapter(this, bluetoothModels);
         rvBluetoothShowList.setAdapter(recyclerShowAdapter);
         rvBluetoothShowList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -142,6 +146,7 @@ public class BluetoothActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e("onDestroyonDestroy===","进来。。。");
         BluetoothManager.getInstance(BluetoothActivity.this)
                 .removeScanBlueCallBack(scanBlueCallBack);
         BluetoothManager.getInstance(BluetoothActivity.this)

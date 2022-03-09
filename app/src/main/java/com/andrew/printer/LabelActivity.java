@@ -105,7 +105,8 @@ public class LabelActivity extends Activity {
             }
         });
 
-        //打印案例
+        //打印案例----40*30
+/*
         findViewById(R.id.btn_label_test_example).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,36 +115,77 @@ public class LabelActivity extends Activity {
                 instance.clearCanvas();
                 instance.initCanvas(40, 30);
                 instance.setDirection(1);//1为正向
+*/
 /*                instance.printText(88, 0, 1, 2, "福建省食用农产品合格证（散户）");
                 instance.printText(0, 50, 1, 1, "我承诺");
                 instance.printText(0, 80, 1, 1, "√ 没有使用禁用农药兽药");
-                instance.printBarCode(0, 114, "128", 48, 3, 2, 0, "123456");*/
+                instance.printBarCode(0, 114, "128", 48, 3, 2, 0, "123456");*//*
 
 
-                instance.printText(0, 20, 1, 1, "品号品号品号品号品号品号");
-                instance.printText(0, 50, 1, 1, "特征特征");
-                instance.printText(0, 80, 1, 1, "条码测试条码测试条码测试");
-                instance.printBarCode(0, 114, "128", 10 * 8, 1, 1, 0, "059#002#305#TI1901070017#2019-01-07#01001");
-                instance.beginPrintf(1);
+         */
+/*                instance.printText(5, 15, 1, 1, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" );
+                instance.printText(5, 55, 1, 1, "BBBBBBBBBBBBBBBBBBBBBBBBBBBBB" );
+                instance.printQrCode(100, 92, "L", 6, 0, "00000#11111#8888888888");
+                instance.beginPrintf(1);*//*
 
-
-                                /*        //打印二维码-单条打印
+         */
+/*        //打印二维码-单条打印
         instance.printQrCode(80, 20, "L", 6, 0, params.getString("code"));
         instance.printText(30, 200, 1, 1, "品号:" + params.getString("prdNo"));
-        instance.beginPrintf(1);*/
+        instance.beginPrintf(1);*//*
+
 
                 //打印二维码-多条打印
-/*        ArrayList<Object> testList = new ArrayList<>();
+        ArrayList<Object> testList = new ArrayList<>();
         testList.add("1111#11111#111111");
         testList.add("2222#22222#222222");
         for (Object s : testList) {
-            instance.printQrCode(80, 20, "L", 6, 0, (String) s);
-            instance.printText(30, 200, 1, 1, "品号:" + (String) s);
+            instance.printText(5, 15, 1, 1, "品号:" + (String) s);
+            instance.printText(5, 55, 1, 1, "特征:"+s );
+            instance.printQrCode(100, 92, "L", 6, 0, (String) s);
             instance.beginPrintf(1);
             instance.clearCanvas();
-        }*/
+        }
             }
         });
+*/
+
+        //打印案例----70*50
+        findViewById(R.id.btn_label_test_example).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                PrintfTSPLManager instance = PrintfTSPLManager.getInstance(LabelActivity.this);
+                instance.clearCanvas();
+                instance.initCanvas(70, 50);
+                instance.setDirection(0);//1为正向
+
+/*                instance.printText(5, 15, 1, 1, "AAAAAAAAAAAAAAAAAAAAAAAAAAAAA" );
+                instance.printText(5, 55, 1, 1, "BBBBBBBBBBBBBBBBBBBBBBBBBBBBB" );*/
+
+                instance.printText(25, 40, 2, 1, "品号:" + "AAAAAAAAAAAAAAAAAAAAAAA");
+                instance.printText(25, 120, 2, 1, "单号:" + "BBBBBBBBBBBBBBBBBBBBBBBB");
+                instance.printText(25, 220, 2, 1, "数量:" + "20");
+                instance.printText(25, 320, 2, 1, "规格:" + "测试");
+                instance.printQrCode(310, 160, "H", 7, 0, "00000#11111#8888888888");
+                instance.beginPrintf(1);
+
+                //打印二维码-多条打印
+/*                ArrayList<Object> testList = new ArrayList<>();
+                testList.add("1111#11111#111111");
+                testList.add("2222#22222#222222");
+                for (Object s : testList) {
+                    instance.printText(25, 40, 2, 1, "品号:"+"AAAAAAAAAAAAAAAAAAAAAAA");
+                    instance.printText(25, 120, 2, 1, "单号:"+"BBBBBBBBBBBBBBBBBBBBBBBB");
+                    instance.printText(25, 220, 2, 1, "数量:"+"20");
+                    instance.printText(25, 320, 2, 1, "规格:"+"测试");
+                    instance.printQrCode(310, 160, "H", 7, 0, "00000#11111#8888888888");
+                    instance.beginPrintf(1);
+                    instance.clearCanvas();
+                }*/
+            }
+        });
+
     }
 
     private Bitmap decodeResource(Resources resources, int id) {

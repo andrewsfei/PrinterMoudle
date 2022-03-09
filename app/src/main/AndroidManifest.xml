@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.andrew.printer"
-    >
+    package="com.andrew.printer">
 
     <application
         android:allowBackup="false"
@@ -19,11 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<!--        android:theme="@android:style/Theme.Dialog" -->
+        <activity
+            android:name="com.andrew.printer.BluetoothActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@style/Theme.Dialog"
+            />
 
-        <activity android:name="com.andrew.printer.BluetoothActivity"/>
-        <activity android:name="com.andrew.printer.LabelActivity"/>
-        <activity android:name="com.andrew.printer.ReceiptActivity"/>
-        <activity android:name="com.andrew.printer.USBPrinterActivity"/>
+        <activity android:name="com.andrew.printer.LabelActivity" />
+        <activity android:name="com.andrew.printer.ReceiptActivity" />
+        <activity android:name="com.andrew.printer.USBPrinterActivity" />
 
 
     </application>
