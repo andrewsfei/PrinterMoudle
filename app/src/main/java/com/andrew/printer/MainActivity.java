@@ -109,4 +109,18 @@ public class MainActivity extends Activity {
         BluetoothManager.getInstance(this).connectLastBluetooth();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //新增
+        cancelBlueCallBack();
+    }
+
+    private void cancelBlueCallBack() {
+        BluetoothManager.getInstance(this).stopSearch();
+        BluetoothManager.getInstance(this).clearAllScanBlueCallBack();
+        BluetoothManager.getInstance(this).clearConnectResultCallBack();
+        BluetoothManager.getInstance(this).removePairDevice();
+
+    }
 }
