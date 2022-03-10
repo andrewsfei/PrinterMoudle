@@ -1,4 +1,4 @@
-package com.andrew.printer;
+package com.andrew.printf.recycleview;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.andrew.printf.R;
 import com.andrew.printf.manager.BluetoothManager;
 import com.andrew.printf.model.BluetoothModel;
 import com.andrew.printf.utils.PermissionUtil;
@@ -146,7 +147,6 @@ public class BluetoothActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Log.e("onDestroyonDestroy===","进来。。。");
         BluetoothManager.getInstance(BluetoothActivity.this)
                 .removeScanBlueCallBack(scanBlueCallBack);
         BluetoothManager.getInstance(BluetoothActivity.this)

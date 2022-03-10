@@ -18,9 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        android:theme="@android:style/Theme.Dialog" -->
         <activity
-            android:name="com.andrew.printer.BluetoothActivity"
+            android:name="com.andrew.printf.recycleview.BluetoothActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.Dialog"
             />

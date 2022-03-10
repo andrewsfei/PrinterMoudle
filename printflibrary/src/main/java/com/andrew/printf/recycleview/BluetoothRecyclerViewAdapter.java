@@ -1,4 +1,4 @@
-package com.andrew.printer;
+package com.andrew.printf.recycleview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.andrew.printf.R;
 import com.andrew.printf.model.BluetoothModel;
 
 import java.util.List;
