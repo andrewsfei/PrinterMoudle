@@ -63,11 +63,13 @@ public class BluetoothActivity extends Activity {
         @Override
         public void close(BluetoothDevice device) {
             showToast("蓝牙关闭");
+            BluetoothActivity.this.finish();
         }
 
         @Override
         public void fail(BluetoothDevice device) {
             showToast("蓝牙连接失败");
+            BluetoothActivity.this.finish();
         }
     };
 
@@ -147,6 +149,7 @@ public class BluetoothActivity extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("onDestroy----","onDestroy");
         BluetoothManager.getInstance(BluetoothActivity.this)
                 .removeScanBlueCallBack(scanBlueCallBack);
         BluetoothManager.getInstance(BluetoothActivity.this)
