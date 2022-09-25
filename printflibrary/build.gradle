@@ -10,7 +10,7 @@ android {
         minSdk 21
         targetSdk 28
         versionCode 1
-        versionName "1.0.7"
+        versionName "1.0.8"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -46,4 +46,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.zxing:core:3.3.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation files('libs/gprintersdkv2.jar')
+    compile files('libs/gprintersdkv2.jar')
 }

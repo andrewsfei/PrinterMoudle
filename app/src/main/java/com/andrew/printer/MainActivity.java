@@ -14,6 +14,9 @@ import com.andrew.printf.manager.BluetoothManager;
 import com.andrew.printf.recycleview.BluetoothActivity;
 import com.andrew.printf.utils.ToastUtils;
 
+/***
+ * 蓝牙打印
+ */
 public class MainActivity extends Activity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
