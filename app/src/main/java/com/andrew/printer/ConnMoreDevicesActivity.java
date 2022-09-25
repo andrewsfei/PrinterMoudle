@@ -1,10 +1,9 @@
-package com.andrew.printf.gpsdk;
+package com.andrew.printer;
 
 import static android.hardware.usb.UsbManager.ACTION_USB_DEVICE_DETACHED;
-
+import static com.andrew.printer.DeviceConnFactoryManager.CONN_STATE_FAILED;
 import static com.andrew.printf.gpsdk.Constant.ACTION_USB_PERMISSION;
 import static com.andrew.printf.gpsdk.Constant.MESSAGE_UPDATE_PARAMETER;
-import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.CONN_STATE_FAILED;
 import static com.andrew.printf.gpsdk.ListViewAdapter.CONN_METHOD;
 import static com.andrew.printf.gpsdk.ListViewAdapter.MESSAGE_CONNECT;
 
@@ -29,8 +28,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-
 import com.andrew.printf.R;
+import com.andrew.printf.gpsdk.BluetoothDeviceList;
+import com.andrew.printf.gpsdk.Constant;
+import com.andrew.printf.gpsdk.ListViewAdapter;
+import com.andrew.printf.gpsdk.PrinterCommand;
+import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
+import com.andrew.printf.gpsdk.ThreadPool;
+import com.andrew.printf.gpsdk.UsbDeviceList;
+import com.andrew.printf.gpsdk.Utils;
+import com.andrew.printf.gpsdk.WifiParameterConfigDialog;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;

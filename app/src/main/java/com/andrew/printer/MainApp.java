@@ -1,10 +1,10 @@
-package com.andrew.printf.gpsdk;
+package com.andrew.printer;
 
 import android.app.Application;
 import android.content.Context;
 
 
-public class App extends Application {
+public class MainApp extends Application {
 
     private static Context mContext;
 

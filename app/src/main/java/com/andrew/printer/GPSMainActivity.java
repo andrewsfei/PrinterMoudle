@@ -5,8 +5,8 @@ import static android.hardware.usb.UsbManager.ACTION_USB_DEVICE_DETACHED;
 
 import static com.andrew.printf.gpsdk.Constant.ACTION_USB_PERMISSION;
 import static com.andrew.printf.gpsdk.Constant.MESSAGE_UPDATE_PARAMETER;
-import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.ACTION_QUERY_PRINTER_STATE;
-import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.CONN_STATE_FAILED;
+import static com.andrew.printer.DeviceConnFactoryManager.ACTION_QUERY_PRINTER_STATE;
+import static com.andrew.printer.DeviceConnFactoryManager.CONN_STATE_FAILED;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -36,10 +36,7 @@ import androidx.core.content.ContextCompat;
 
 import com.andrew.printf.gpsdk.BluetoothDeviceList;
 import com.andrew.printf.gpsdk.CheckWifiConnThread;
-import com.andrew.printf.gpsdk.ConnMoreDevicesActivity;
 import com.andrew.printf.gpsdk.Constant;
-import com.andrew.printf.gpsdk.DeviceConnFactoryManager;
-import com.andrew.printf.gpsdk.PrintContent;
 import com.andrew.printf.gpsdk.PrinterCommand;
 import com.andrew.printf.gpsdk.SerialPortList;
 import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
@@ -674,7 +671,7 @@ public class GPSMainActivity extends AppCompatActivity {
      */
     private void closeport(){
         if(DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id]!=null&& DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id].mPort!=null) {
-//            DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id].reader.cancel();
+            DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id].reader.cancel();
             DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id].mPort.closePort();
             DeviceConnFactoryManager.getDeviceConnFactoryManagers()[id].mPort=null;
         }

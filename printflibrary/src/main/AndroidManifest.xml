@@ -17,27 +17,7 @@
     <uses-feature
         android:name="android.hardware.usb.host"
         android:required="true" />
-    <!--App类用于获取全局变量，发送广播需用到，需要注册在application,不然发送广播会出现空指针错误-->
 
-    <application android:name=".gpsdk.App">
-        <activity
-            android:name=".gpsdk.BluetoothDeviceList"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/bluetooth_device_list"
-            android:theme="@android:style/Theme.Dialog"
-            tools:ignore="WrongManifestParent" />
-        <activity
-            android:name=".gpsdk.UsbDeviceList"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/usb_devices_list"
-            android:theme="@android:style/Theme.Dialog" />
-        <activity
-            android:name=".gpsdk.SerialPortList"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" />
-        <activity android:name=".gpsdk.ConnMoreDevicesActivity" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-    </application>
 
 
 </manifest>

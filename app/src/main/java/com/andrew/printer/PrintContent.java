@@ -1,4 +1,4 @@
-package com.andrew.printf.gpsdk;
+package com.andrew.printer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -65,7 +65,7 @@ public class PrintContent {
             // 设置打印左对齐
             esc.addSelectJustification(EscCommand.JUSTIFICATION.LEFT);
             esc.addText("打印Bitmap图测试:\n");
-            Bitmap b = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.gprinter);
+            Bitmap b = BitmapFactory.decodeResource(MainApp.getContext().getResources(), R.drawable.gprinter);
             // 打印图片  光栅位图  384代表打印图片像素  0代表打印模式
             // 58mm打印机 可打印区域最大点数为 384 ，80mm 打印机 可打印区域最大点数为 576
             esc.addRastBitImage(b, 384, 0);
@@ -145,7 +145,7 @@ public class PrintContent {
             tsc.addUnicodeText(10,32, LabelCommand.FONTTYPE.TRADITIONAL_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"BIG5碼繁體中文字元","BIG5");
             //打印韩文
             tsc.addUnicodeText(10,60, LabelCommand.FONTTYPE.KOREAN, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"Korean 지아보 하성","EUC_KR");
-            Bitmap b = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.gprinter);
+            Bitmap b = BitmapFactory.decodeResource(MainApp.getContext().getResources(), R.drawable.gprinter);
             // 绘制图片
             tsc.addBitmap(10, 80, LabelCommand.BITMAP_MODE.OVERWRITE, 300, b);
             //绘制二维码
@@ -242,7 +242,7 @@ public class PrintContent {
             cpcl.addText(CpclCommand.TEXT_FONT.FONT_4, 0, 195, "设备");
             cpcl.addJustification(CpclCommand.ALIGNMENT.LEFT);
             cpcl.addText(CpclCommand.TEXT_FONT.FONT_4, 0, 230, "Print bitmap!");
-            Bitmap bitmap = BitmapFactory.decodeResource(App.getContext().getResources(), R.drawable.gprinter);
+            Bitmap bitmap = BitmapFactory.decodeResource(MainApp.getContext().getResources(), R.drawable.gprinter);
             cpcl.addEGraphics(0, 255, 385, bitmap);
             cpcl.addText(CpclCommand.TEXT_FONT.FONT_4, 0, 645, "Print code128!");
             cpcl.addBarcodeText(5, 2);
@@ -263,7 +263,7 @@ public class PrintContent {
      * @return
      */
       public static Bitmap getBitmap(Context mcontext) {
-            View v = View.inflate(App.getContext(), R.layout.pj, null);
+            View v = View.inflate(MainApp.getContext(), R.layout.pj, null);
             TableLayout tableLayout = (TableLayout) v.findViewById(R.id.li);
             TextView jine = (TextView) v.findViewById(R.id.jine);
             TextView pep = (TextView) v.findViewById(R.id.pep);

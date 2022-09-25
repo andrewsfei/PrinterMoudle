@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.andrew.printer">
-
+<!--    tools:replace="android:name"-->
     <application
+        android:name=".MainApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -36,6 +38,26 @@
         <activity android:name="com.andrew.printer.LabelActivity" />
         <activity android:name="com.andrew.printer.ReceiptActivity" />
         <activity android:name="com.andrew.printer.USBPrinterActivity" />
+
+        <!--App类用于获取全局变量，发送广播需用到，需要注册在application,不然发送广播会出现空指针错误-->
+        <!--    tools:replace="android:name">-->
+        <activity
+            android:name="com.andrew.printf.gpsdk.BluetoothDeviceList"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/bluetooth_device_list"
+            android:theme="@android:style/Theme.Dialog"
+            tools:ignore="WrongManifestParent" />
+        <activity
+            android:name="com.andrew.printf.gpsdk.UsbDeviceList"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="@string/usb_devices_list"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.andrew.printf.gpsdk.SerialPortList"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity android:name=".ConnMoreDevicesActivity" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
 
 <!--        <meta-data
             android:name="com.google.android.gms.version"

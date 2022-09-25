@@ -1,4 +1,4 @@
-package com.andrew.printf.gpsdk;
+package com.andrew.printer;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,17 @@ import android.os.Message;
 import android.util.Log;
 
 import com.andrew.printf.R;
+import com.andrew.printf.gpsdk.Constant;
+import com.andrew.printf.gpsdk.PrinterCommand;
+import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
+import com.andrew.printf.gpsdk.ThreadPool;
+import com.andrew.printf.gpsdk.Utils;
 import com.gprinter.io.BluetoothPort;
 import com.gprinter.io.EthernetPort;
 import com.gprinter.io.PortManager;
 import com.gprinter.io.SerialPort;
 import com.gprinter.io.UsbPort;
+
 
 import java.io.IOException;
 import java.util.Vector;
@@ -483,7 +489,7 @@ public class DeviceConnFactoryManager {
         });
     }
 
-    class PrinterReader extends Thread {
+   public class PrinterReader extends Thread {
         private boolean isRun = false;
 
         private byte[] buffer = new byte[100];
@@ -528,10 +534,10 @@ public class DeviceConnFactoryManager {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case Constant.abnormal_Disconnection://异常断开连接
-                    Utils.toast(App.getContext(),App.getContext().getString(R.string.str_disconnect));
+                    Utils.toast(MainApp.getContext(),MainApp.getContext().getString(R.string.str_disconnect));
                     break;
                 case DEFAUIT_COMMAND://默认模式
-                    Utils.toast(App.getContext(),App.getContext().getString(R.string.default_mode));
+                    Utils.toast(MainApp.getContext(),MainApp.getContext().getString(R.string.default_mode));
                     break;
                 case READ_DATA:
                     int cnt = msg.getData().getInt(READ_DATA_CNT); //数据长度 >0;
@@ -541,31 +547,31 @@ public class DeviceConnFactoryManager {
                         return;
                     }
                     int result = judgeResponseType(buffer[0]); //数据右移
-                    String status = App.getContext().getString(R.string.str_printer_conn_normal);
+                    String status = MainApp.getContext().getString(R.string.str_printer_conn_normal);
                     if (sendCommand == esc) {
                         //设置当前打印机模式为ESC模式
                         if (currentPrinterCommand == null) {
                             currentPrinterCommand = PrinterCommand.ESC;
                             sendStateBroadcast(CONN_STATE_CONNECTED);
-                            Utils.toast(App.getContext(),App.getContext().getString(R.string.str_escmode));
+                            Utils.toast(MainApp.getContext(),MainApp.getContext().getString(R.string.str_escmode));
                         } else {//查询打印机状态
                             if (result == 0) {//打印机状态查询
                                 Intent intent = new Intent(ACTION_QUERY_PRINTER_STATE);
                                 intent.putExtra(DEVICE_ID, id);
-                                App.getContext().sendBroadcast(intent);
+                                MainApp.getContext().sendBroadcast(intent);
                             } else if (result == 1) {//查询打印机实时状态
                                 if ((buffer[0] & ESC_STATE_PAPER_ERR) > 0) {
-                                    status += " "+App.getContext().getString(R.string.str_printer_out_of_paper);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_out_of_paper);
                                 }
                                 if ((buffer[0] & ESC_STATE_COVER_OPEN) > 0) {
-                                    status += " "+App.getContext().getString(R.string.str_printer_open_cover);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_open_cover);
                                 }
                                 if ((buffer[0] & ESC_STATE_ERR_OCCURS) > 0) {
-                                    status += " "+App.getContext().getString(R.string.str_printer_error);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_error);
                                 }
-                                System.out.println(App.getContext().getString(R.string.str_state) + status);
-                                String mode=App.getContext().getString(R.string.str_printer_printmode_esc);
-                                Utils.toast(App.getContext(), mode+" "+status);
+                                System.out.println(MainApp.getContext().getString(R.string.str_state) + status);
+                                String mode=MainApp.getContext().getString(R.string.str_printer_printmode_esc);
+                                Utils.toast(MainApp.getContext(), mode+" "+status);
                             }
                         }
                     } else if (sendCommand == tsc) {
@@ -573,47 +579,47 @@ public class DeviceConnFactoryManager {
                         if (currentPrinterCommand == null) {
                             currentPrinterCommand = PrinterCommand.TSC;
                             sendStateBroadcast(CONN_STATE_CONNECTED);
-                            Utils.toast(App.getContext(),App.getContext().getString(R.string.str_tscmode));
+                            Utils.toast(MainApp.getContext(),MainApp.getContext().getString(R.string.str_tscmode));
                         } else {
                             if (cnt == 1) {//查询打印机实时状态
                                 if ((buffer[0] & TSC_STATE_PAPER_ERR) > 0) {//缺纸
-                                    status += " "+App.getContext().getString(R.string.str_printer_out_of_paper);
+                                    status += " "+ MainApp.getContext().getString(R.string.str_printer_out_of_paper);
                                 }
                                 if ((buffer[0] & TSC_STATE_COVER_OPEN) > 0) {//开盖
-                                    status += " "+App.getContext().getString(R.string.str_printer_open_cover);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_open_cover);
                                 }
                                 if ((buffer[0] & TSC_STATE_ERR_OCCURS) > 0) {//打印机报错
-                                    status += " "+App.getContext().getString(R.string.str_printer_error);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_error);
                                 }
-                                System.out.println(App.getContext().getString(R.string.str_state) + status);
-                                String mode=App.getContext().getString(R.string.str_printer_printmode_tsc);
-                                Utils.toast(App.getContext(), mode+" "+status);
+                                System.out.println(MainApp.getContext().getString(R.string.str_state) + status);
+                                String mode=MainApp.getContext().getString(R.string.str_printer_printmode_tsc);
+                                Utils.toast(MainApp.getContext(), mode+" "+status);
                             } else {//打印机状态查询
                                 Intent intent = new Intent(ACTION_QUERY_PRINTER_STATE);
                                 intent.putExtra(DEVICE_ID, id);
-                                App.getContext().sendBroadcast(intent);
+                                MainApp.getContext().sendBroadcast(intent);
                             }
                         }
                     }else if(sendCommand==cpcl){
                         if (currentPrinterCommand == null) {
                             currentPrinterCommand = PrinterCommand.CPCL;
                             sendStateBroadcast(CONN_STATE_CONNECTED);
-                            Utils.toast(App.getContext(),App.getContext().getString(R.string.str_cpclmode));
+                            Utils.toast(MainApp.getContext(),MainApp.getContext().getString(R.string.str_cpclmode));
                         }else {
                             if (cnt == 1) {
-                                System.out.println(App.getContext().getString(R.string.str_state) + status);
+                                System.out.println(MainApp.getContext().getString(R.string.str_state) + status);
                                 if ((buffer[0] ==CPCL_STATE_PAPER_ERR)) {//缺纸
-                                    status += " "+App.getContext().getString(R.string.str_printer_out_of_paper);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_out_of_paper);
                                 }
                                 if ((buffer[0] ==CPCL_STATE_COVER_OPEN)) {//开盖
-                                    status += " "+App.getContext().getString(R.string.str_printer_open_cover);
+                                    status += " "+MainApp.getContext().getString(R.string.str_printer_open_cover);
                                 }
-                                String mode=App.getContext().getString(R.string.str_printer_printmode_cpcl);
-                                Utils.toast(App.getContext(), mode+" "+status);
+                                String mode=MainApp.getContext().getString(R.string.str_printer_printmode_cpcl);
+                                Utils.toast(MainApp.getContext(), mode+" "+status);
                             } else {//打印机状态查询
                                 Intent intent = new Intent(ACTION_QUERY_PRINTER_STATE);
                                 intent.putExtra(DEVICE_ID, id);
-                                App.getContext().sendBroadcast(intent);
+                                MainApp.getContext().sendBroadcast(intent);
                             }
                         }
                     }
@@ -632,7 +638,7 @@ public class DeviceConnFactoryManager {
         Intent intent = new Intent(ACTION_CONN_STATE);
         intent.putExtra(STATE, state);
         intent.putExtra(DEVICE_ID, id);
-        App.getContext().sendBroadcast(intent);//此处若报空指针错误，需要在清单文件application标签里注册此类，参考demo
+        MainApp.getContext().sendBroadcast(intent);//此处若报空指针错误，需要在清单文件application标签里注册此类，参考demo
     }
 
     /**
