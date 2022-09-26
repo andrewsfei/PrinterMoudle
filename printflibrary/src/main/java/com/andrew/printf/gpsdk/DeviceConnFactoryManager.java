@@ -1,4 +1,4 @@
-package com.andrew.printer;
+package com.andrew.printf.gpsdk;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,6 @@ import android.os.Message;
 import android.util.Log;
 
 import com.andrew.printf.R;
-import com.andrew.printf.gpsdk.Constant;
-import com.andrew.printf.gpsdk.PrinterCommand;
-import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
-import com.andrew.printf.gpsdk.ThreadPool;
-import com.andrew.printf.gpsdk.Utils;
 import com.gprinter.io.BluetoothPort;
 import com.gprinter.io.EthernetPort;
 import com.gprinter.io.PortManager;

@@ -36,8 +36,9 @@ android {
 dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation project(path: ':printflibrary')
+    implementation files('libs\\gprintersdkv2.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-//    implementation files('libs/gprintersdkv2.jar')
+    implementation files('libs/gprintersdkv2.jar')
 }

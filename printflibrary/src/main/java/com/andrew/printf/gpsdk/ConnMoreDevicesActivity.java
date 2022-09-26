@@ -1,7 +1,7 @@
-package com.andrew.printer;
+package com.andrew.printf.gpsdk;
 
 import static android.hardware.usb.UsbManager.ACTION_USB_DEVICE_DETACHED;
-import static com.andrew.printer.DeviceConnFactoryManager.CONN_STATE_FAILED;
+import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.CONN_STATE_FAILED;
 import static com.andrew.printf.gpsdk.Constant.ACTION_USB_PERMISSION;
 import static com.andrew.printf.gpsdk.Constant.MESSAGE_UPDATE_PARAMETER;
 import static com.andrew.printf.gpsdk.ListViewAdapter.CONN_METHOD;
@@ -29,15 +29,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.andrew.printf.R;
-import com.andrew.printf.gpsdk.BluetoothDeviceList;
-import com.andrew.printf.gpsdk.Constant;
-import com.andrew.printf.gpsdk.ListViewAdapter;
-import com.andrew.printf.gpsdk.PrinterCommand;
-import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
-import com.andrew.printf.gpsdk.ThreadPool;
-import com.andrew.printf.gpsdk.UsbDeviceList;
-import com.andrew.printf.gpsdk.Utils;
-import com.andrew.printf.gpsdk.WifiParameterConfigDialog;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -45,13 +36,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Administrator
- *
- * @author 猿史森林
- *         Date: 2017/11/3
- *         Class description:该类用于连接多台打印机
- */
 public class ConnMoreDevicesActivity extends Activity {
     String TAG=ConnMoreDevicesActivity.class.getSimpleName();
     private DeviceConnFactoryManager[] deviceConnFactoryManagers;

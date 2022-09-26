@@ -1,12 +1,5 @@
 package com.andrew.printf.gpsdk;
 
-/**
- * Created by Administrator
- *
- * @author 猿史森林
- *         Date: 2017/10/14
- *         Class description:
- */
 public class Constant {
     public static final String SERIALPORTPATH = "SerialPortPath";
     public static final String SERIALPORTBAUDRATE = "SerialPortBaudrate";

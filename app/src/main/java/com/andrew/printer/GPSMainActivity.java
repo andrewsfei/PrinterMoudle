@@ -5,8 +5,8 @@ import static android.hardware.usb.UsbManager.ACTION_USB_DEVICE_DETACHED;
 
 import static com.andrew.printf.gpsdk.Constant.ACTION_USB_PERMISSION;
 import static com.andrew.printf.gpsdk.Constant.MESSAGE_UPDATE_PARAMETER;
-import static com.andrew.printer.DeviceConnFactoryManager.ACTION_QUERY_PRINTER_STATE;
-import static com.andrew.printer.DeviceConnFactoryManager.CONN_STATE_FAILED;
+import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.ACTION_QUERY_PRINTER_STATE;
+import static com.andrew.printf.gpsdk.DeviceConnFactoryManager.CONN_STATE_FAILED;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -36,7 +36,10 @@ import androidx.core.content.ContextCompat;
 
 import com.andrew.printf.gpsdk.BluetoothDeviceList;
 import com.andrew.printf.gpsdk.CheckWifiConnThread;
+import com.andrew.printf.gpsdk.ConnMoreDevicesActivity;
 import com.andrew.printf.gpsdk.Constant;
+import com.andrew.printf.gpsdk.DeviceConnFactoryManager;
+import com.andrew.printf.gpsdk.PrintContent;
 import com.andrew.printf.gpsdk.PrinterCommand;
 import com.andrew.printf.gpsdk.SerialPortList;
 import com.andrew.printf.gpsdk.ThreadFactoryBuilder;
@@ -48,6 +51,7 @@ import com.gprinter.command.CpclCommand;
 import com.gprinter.command.EscCommand;
 import com.gprinter.command.FactoryCommand;
 import com.gprinter.command.LabelCommand;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -748,6 +752,7 @@ public class GPSMainActivity extends AppCompatActivity {
                             tvConnState.setText(getString(R.string.str_conn_state_connecting));
                             break;
                         case DeviceConnFactoryManager.CONN_STATE_CONNECTED:
+                            tip(String.format(getString(R.string.str_conn_state_connected) + "\n" + getConnDeviceInfo()));
                             tvConnState.setText(getString(R.string.str_conn_state_connected) + "\n" + getConnDeviceInfo());
                             break;
                         case CONN_STATE_FAILED:
@@ -861,7 +866,9 @@ public class GPSMainActivity extends AppCompatActivity {
         DeviceConnFactoryManager[] deviceConnFactoryManagers;  deviceConnFactoryManagers = DeviceConnFactoryManager.getDeviceConnFactoryManagers();
         for (int i = 0; i < 4; i++) {
             if (deviceConnFactoryManagers[i] != null && deviceConnFactoryManagers[i].getConnState()) {
+                tip(String.format(getString(R.string.str_conn_state_connected) + "\n" + getConnDeviceInfo()));
                 tvConnState.setText(getString(R.string.str_conn_state_connected) + "\n" + getConnDeviceInfo());
+                tip(getString(R.string.str_conn_state_connected) + "\n" + getConnDeviceInfo());
                 break;
             } else {
                 tvConnState.setText(getString(R.string.str_conn_state_disconnect));

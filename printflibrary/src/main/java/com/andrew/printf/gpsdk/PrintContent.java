@@ -1,4 +1,4 @@
-package com.andrew.printer;
+package com.andrew.printf.gpsdk;
 
 import android.content.Context;
 import android.graphics.Bitmap;
