@@ -166,13 +166,14 @@ public class PrintContent {
       public static Vector<Byte> getLabelTest() {
             LabelCommand tsc = new LabelCommand();
             // 设置标签尺寸宽高，按照实际尺寸设置 单位mm
-            tsc.addSize(40, 30);
+//            tsc.addSize(40, 30);
+            tsc.addSize(70, 50);
             // 设置标签间隙，按照实际尺寸设置，如果为无间隙纸则设置为0 单位mm
             tsc.addGap(2);
             // 设置打印方向
             tsc.addDirection(LabelCommand.DIRECTION.FORWARD, LabelCommand.MIRROR.NORMAL);
             // 开启带Response的打印，用于连续打印
-//            tsc.addQueryPrinterStatus(LabelCommand.RESPONSE_MODE.ON);
+            tsc.addQueryPrinterStatus(LabelCommand.RESPONSE_MODE.ON);
             // 设置原点坐标
             tsc.addReference(0, 0);
             //设置浓度
@@ -182,16 +183,23 @@ public class PrintContent {
             // 清除打印缓冲区
             tsc.addCls();
             // 绘制简体中文
-
-            tsc.addText(12, 10, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"周转箱:AB8888888888" );
+            //40*30
+/*            tsc.addText(12, 10, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"周转箱:AB8888888888" );
             tsc.addText(12, 40, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"制令单:666666" );
             tsc.addText(12, 70, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1,"品号:mr3333333" );
-            tsc.addQRCode(100, 90, LabelCommand.EEC.LEVEL_L, 5, LabelCommand.ROTATION.ROTATION_0, "http://www.andrewsfei.com");
+            tsc.addQRCode(100, 90, LabelCommand.EEC.LEVEL_L, 5, LabelCommand.ROTATION.ROTATION_0, "http://www.andrewsfei.com");*/
 /*            tsc.addText(10, 0, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_1, "周转箱：A88888888");
             //绘制二维码
             tsc.addQRCode(10,380, LabelCommand.EEC.LEVEL_L, 5, LabelCommand.ROTATION.ROTATION_0, "http://www.andrewsfei.com");*/
+            //70*50
+            tsc.addText(20, 45, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_2, "周转箱:" + "boxNo");
+            tsc.addText(20, 125, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_2, "制令单:" + "moNo");
+            tsc.addText(20, 205, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_2, "品号:" + "mrpNo");
+            tsc.addText(20, 285, LabelCommand.FONTTYPE.SIMPLIFIED_CHINESE, LabelCommand.ROTATION.ROTATION_0, LabelCommand.FONTMUL.MUL_1, LabelCommand.FONTMUL.MUL_2, "数量:" + "qty" + "");
+            tsc.addQRCode(330, 180, LabelCommand.EEC.LEVEL_L, 7, LabelCommand.ROTATION.ROTATION_0, "boxNohttp://www.andrewsfei.com");
             // 打印标签
             tsc.addPrint(1, 1);
+
             // 打印标签后 蜂鸣器响
             tsc.addSound(2, 100);
             //开启钱箱
