@@ -62,17 +62,17 @@ public class UsbDeviceList extends Activity {
         Toast.makeText(getApplicationContext(),
                 err, Toast.LENGTH_SHORT).show();
     }
-
-//    boolean checkUsbDevicePidVid(UsbDevice dev) {
-//        int pid = dev.getProductId();
-//        int vid = dev.getVendorId();
-//        return ((vid == 34918 && pid == 256) || (vid == 1137 && pid == 85)
-//                || (vid == 6790 && pid == 30084)
-//                || (vid == 26728 && pid == 256) || (vid == 26728 && pid == 512)
-//                || (vid == 26728 && pid == 256) || (vid == 26728 && pid == 768)
-//                || (vid == 26728 && pid == 1024) || (vid == 26728 && pid == 1280)
-//                || (vid == 26728 && pid == 1536));
-//    }
+    //检查是否为佳博自己打印机的usb接口
+    boolean checkUsbDevicePidVid(UsbDevice dev) {
+        int pid = dev.getProductId();
+        int vid = dev.getVendorId();
+        return ((vid == 34918 && pid == 256) || (vid == 1137 && pid == 85)
+                || (vid == 6790 && pid == 30084)
+                || (vid == 26728 && pid == 256) || (vid == 26728 && pid == 512)
+                || (vid == 26728 && pid == 256) || (vid == 26728 && pid == 768)
+                || (vid == 26728 && pid == 1024) || (vid == 26728 && pid == 1280)
+                || (vid == 26728 && pid == 1536));
+    }
 
     public void getUsbDeviceList() {
         UsbManager manager = (UsbManager) getSystemService(Context.USB_SERVICE);
@@ -85,9 +85,9 @@ public class UsbDeviceList extends Activity {
             while (deviceIterator.hasNext()) {
                 UsbDevice device = deviceIterator.next();
                 String devicename = device.getDeviceName();
-//                if (checkUsbDevicePidVid(device)) {
+                if (checkUsbDevicePidVid(device)) {
                     mUsbDeviceArrayAdapter.add(devicename);
-//                }
+                }
             }
         } else {
             String noDevices = getResources().getText(R.string.none_usb_device)
